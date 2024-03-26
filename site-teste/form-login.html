@@ -26,7 +26,7 @@
 
         button {
             height: 30px;
-            background-color: blue;
+            background-color: black;
             border: none;
             color: white;
             cursor: pointer;
@@ -43,23 +43,35 @@
             right: 0;
         }
 
+        span {
+            margin-left: 15px;
+            background-color: #ff2222;
+            padding: 5px 30px;
+        }
+
     </style>
 </head>
 <body>
-    <form action="">
+    <form action="" onsubmit="return validarLogin()">
         <label for="login">Login:</label><br>
         <input type="text" id="login" required ><br>
         <label for="senha">Senha:</label><br>
         <input type="password" id="senha" required ><br>
-        <button>Acessar</button>
+        <button>Acessar</button><span></span>
     </form>
     <script>
-        document.querySelector("button").addEventListener("click",validarLogin);
+        // document.querySelector("button").addEventListener("click",validarLogin);
         function validarLogin() {
             let login = document.querySelector("#login").value;
             console.log(login);
             let senha = document.querySelector("#senha").value;
             console.log(senha);
+            let msg = document.querySelector("span");
+            msg.innerText = "Login ou Senha incorretos!";
+            // se login = senai e senha = 010203
+            // entao Acesso Permitido
+            // senao Login ou Senha incorretos!
+            return false;
         }
     </script>
 </body>
