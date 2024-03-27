@@ -1,78 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>From Login</title>
-    <style>
-        form {
-            background-color: #607d8b;
-            width: 400px;
-            padding: 15px;
-            border: 2px solid black; 
-            margin: 0 auto;        
-        }
-
-        input {
-            width: 98%;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            background-color: black;
-            color: white;
-            border: none;
-            height: 20px;
-        }
-
-        button {
-            height: 30px;
-            background-color: black;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: medium;
-        }
-
-        body {
-            display: flex;
-            align-items: center;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
-
-        span {
-            margin-left: 15px;
-            background-color: #ff2222;
-            padding: 5px 30px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="estilos/form-login.css">
 </head>
+
 <body>
     <form action="" onsubmit="return validarLogin()">
         <label for="login">Login:</label><br>
-        <input type="text" id="login" required ><br>
+        <input type="text" id="login" required><br>
         <label for="senha">Senha:</label><br>
-        <input type="password" id="senha" required ><br>
+        <input type="password" id="senha" required><br>
         <button>Acessar</button><span></span>
     </form>
-    <script>
-        // document.querySelector("button").addEventListener("click",validarLogin);
-        function validarLogin() {
-            let login = document.querySelector("#login").value;
-            console.log(login);
-            let senha = document.querySelector("#senha").value;
-            console.log(senha);
-            let msg = document.querySelector("span");
-            msg.innerText = "Login ou Senha incorretos!";
-            // se login = senai e senha = 010203
-            // entao Acesso Permitido
-            // senao Login ou Senha incorretos!
-            return false;
-        }
-    </script>
+    <script src="scripts/form-login.js" ></script>
 </body>
+
 </html>
