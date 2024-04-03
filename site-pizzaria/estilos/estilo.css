@@ -13,6 +13,7 @@
 
 html {
     font-size: 62.5%;
+    overflow-x: hidden;
 }
 
 .content{
@@ -138,3 +139,17 @@ html {
 }
 
 /* Sobre Nós */
+
+.img-cozinha img{
+    width: 400px;
+    height: 400px;
+}
+
+.sobre-nos{
+    background-color: #1f1e1f;
+    width: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
