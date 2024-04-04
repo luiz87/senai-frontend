@@ -273,3 +273,31 @@ html {
     background-color: #5e5252;
     color: #ffffff;
 }
+
+/* section contatos */
+
+.contatos{
+    width: 100%;
+    background-color: #1f1e1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-size: 1.8rem;
+    padding-bottom: 4rem;
+}
+
+.contatos h3{
+    font-size: 6rem;
+    margin-bottom: 3rem;
+    font-family: 'Indie Flower', cursive;
+}
+
+.contatos .contatos-secao{
+    display: flex;
+    width: 650px;
+    justify-content: space-between;
+    font-size: 2rem;
+}
+
