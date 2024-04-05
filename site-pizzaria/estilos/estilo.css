@@ -301,3 +301,25 @@ html {
     font-size: 2rem;
 }
 
+.contatos i{
+    margin-right: 1rem;
+}
+
+.contatos .contatos-secao div{
+    cursor: pointer;
+}
+
+.contatos .contatos-secao div:hover{
+    color: #ffc506;
+}
+
+footer {
+    height: 35px;
+    background-color: #000000;
+    color: #ffffff;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
