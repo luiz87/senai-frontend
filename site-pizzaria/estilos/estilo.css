@@ -246,18 +246,19 @@ html {
     font-size: 1.4rem;
     text-transform: uppercase;
     margin-bottom: 0.6rem;
-    display: grid;
+    /* display: grid;
     justify-content: center;
     align-items: center;
     grid-template-columns: 150px 150px;
-    margin-left: 6rem;
+    margin-left: 6rem; */
+    
 }
 
 .itens-cardapio .info h4 span{
     color: #5e5252;
     margin-left: 1.5rem;
     text-decoration: underline;
-    font-weight: 800;
+    font-weight: 800;    
 }
 
 .itens-cardapio .info button{
@@ -450,9 +451,30 @@ footer {
         align-items: center;
     }
 
-    .contatos-secao{
+    .contatos .contatos-secao{
         width: 200px;
-        background-color: red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;        
+    }
+
+    .contatos .contatos-secao div{
+        margin-bottom: 10px;
+    }
+    
+}
+
+@media(max-width: 500px){
+    .conteudo-principal h1{
+        font-size: 3rem;
+    }
+    .conteudo-principal h2{
+        font-size: 2rem;
+    }
+
+    .contentsobre p {
+        width: 90%;
     }
 }
 
