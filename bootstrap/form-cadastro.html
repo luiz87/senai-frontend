@@ -61,17 +61,18 @@
             <input type="password" class="form-control" id="confirmar" placeholder="Confirme a senha" name="confirmar">
         </div>
     </div>
-    <div class="alert alert-danger" id="msg-erro" >
-    </div>
+    <div class="alert alert-danger" id="msg-erro"></div>
+    <div id="dados" class="alert alert-primary"></div>
     <button type="submit" class="btn btn-primary float-end" id="enviar">Enviar</button>
-    <div id="dados"></div>
+    
 </div>
 <script>
     document.querySelector("#enviar").addEventListener("click", validarForm);
-    let erroNoForm = false;
+    let erroNoForm;
     let msgErro = document.getElementById('msg-erro');
     msgErro.style.display = 'none';
     function validarForm() {
+        erroNoForm = false;
         validarInput("nome");
         validarInput("email");
         validarInput("dtNascimento");
@@ -80,30 +81,31 @@
         validarInput("senha");
         validarInput("confirmar");
         validarSexo();
-        validarSenha();
         console.log(pessoa);
 
-        if(erroNoForm){
+        if (erroNoForm) {
             msgErro.innerHTML = '<strong>Atenção:</strong> Algum campo não foi preenchido!';
             msgErro.style.display = '';
         } else {
-            mostrarDados();
+            validarSenha();
+            if (erroNoForm) mostrarDados();
         }
-        
+
     }
 
     function validarSexo() {
         let stSexo = false;
         let lsSexo = document.getElementsByName("sexo");
         for (sx of lsSexo) {
-            if(sx.checked){
+            if (sx.checked) {
                 stSexo = true
                 pessoa.sexo = sx.value
             }
         }
-        if(!stSexo){
+        if (!stSexo) {
             document.getElementById("sexo").style.border = '1px solid red';
-        }else{
+            erroNoForm = true;
+        } else {
             document.getElementById("sexo").style.border = '';
         }
     }
@@ -120,12 +122,18 @@
     }
 
     function validarSenha() {
-        let senha = document.getElementById("senha").value;
-        let confirmar = document.getElementById("confirmar").value;
-        if (senha == confirmar) {
-            alert("Senha Ok");
+        let senha = pessoa.senha;
+        let confirmar = pessoa.confirmar;
+        if (senha.length < 8) {
+            msgErro.innerHTML = "<strong>Atenção:</strong> Senha deve ter 8 ou mais caracteres";
+            erroNoForm = false;
+        }
+        else if (senha == confirmar) {
+            erroNoForm = true;
+            msgErro.style.display = 'none';
         } else {
-            alert("Senha Diferentes");
+            msgErro.innerHTML = "<strong>Atenção:</strong> Senha e Confirmar Senha Estão Diferentes";
+            erroNoForm = false;
         }
     }
 
@@ -138,10 +146,14 @@
         Sexo: ${pessoa.sexo}<br>
         Data de Nascimento: ${pessoa.dtNascimento}<br>
         Escolaridade: ${pessoa.escolaridade}<br>
-        Estado Civil: ${pessoa.estadoCivil}<br>
+        Estado Civil: ${pessoa.estadoCivil}
         `;
+        txt = txt.replaceAll('<br>', '<br><strong>');
+        txt = txt.replaceAll(':', ':</strong>');
         document.querySelector("#dados").innerHTML = txt;
+        document.querySelector("#dados").style.display = '';
     }
+    document.querySelector("#dados").style.display = 'none';
 
 </script>
 </body>
