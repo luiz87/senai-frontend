@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <div class="container-md mt-3">
-    <h2>Fomrulário Cadastro</h2>
+    <h2>Formulário Cadastro</h2>
     <div class="row">
         <div class="mb-3 col-12">
             <label for="nome">Nome:</label>
@@ -61,12 +61,16 @@
             <input type="password" class="form-control" id="confirmar" placeholder="Confirme a senha" name="confirmar">
         </div>
     </div>
+    <div class="alert alert-danger" id="msg-erro" >
+    </div>
     <button type="submit" class="btn btn-primary float-end" id="enviar">Enviar</button>
     <div id="dados"></div>
 </div>
 <script>
     document.querySelector("#enviar").addEventListener("click", validarForm);
-
+    let erroNoForm = false;
+    let msgErro = document.getElementById('msg-erro');
+    msgErro.style.display = 'none';
     function validarForm() {
         validarInput("nome");
         validarInput("email");
@@ -78,7 +82,14 @@
         validarSexo();
         validarSenha();
         console.log(pessoa);
-        mostrarDados();
+
+        if(erroNoForm){
+            msgErro.innerHTML = '<strong>Atenção:</strong> Algum campo não foi preenchido!';
+            msgErro.style.display = '';
+        } else {
+            mostrarDados();
+        }
+        
     }
 
     function validarSexo() {
@@ -101,6 +112,7 @@
         let item = document.getElementById(idItem);
         if (item.value == '') {
             item.style.border = '1px solid red';
+            erroNoForm = true;
         } else {
             item.style.border = '';
             pessoa[idItem] = item.value;
