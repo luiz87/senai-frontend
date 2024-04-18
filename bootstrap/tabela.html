@@ -17,9 +17,9 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Col 1</th>
-                    <th>Col 2</th>
-                    <th>Col 3</th>
+                    <th>Ranking</th>
+                    <th>Nome</th>
+                    <th>Frequencia</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,5 +41,13 @@
             </tbody>
         </table>
     </div>
+    <script>
+        async function buscarNomes() {
+            let retorno = await fetch("https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking");
+            let dados = await retorno.json();
+            console.log(dados);
+        }
+        buscarNomes();
+    </script>
 </body>
 </html>
