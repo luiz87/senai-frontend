@@ -22,7 +22,7 @@
                     <th>Frequencia</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tbody">
                 <tr>
                     <td>L1 C1</td>
                     <td>L1 C2</td>
@@ -51,7 +51,7 @@
 
         function preencherTabela(dados) {
             dados = dados[0].res;
-            let tb;
+            let tb = '';
             for (info of dados) {
                 tb += `<tr>
                          <td>${info.ranking}</td>
@@ -59,7 +59,7 @@
                          <td>${info.frequencia}</td>
                        </tr>`;
             }            
-            console.log(tb);
+            document.getElementById('tbody').innerHTML = tb;
         }
     </script>
 </body>
