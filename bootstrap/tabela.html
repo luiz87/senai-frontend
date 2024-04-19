@@ -42,17 +42,21 @@
         </table>
     </div>
     <script>
+        let dados;
         async function buscarNomes() {
             let retorno = await fetch("https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking");
-            let dados = await retorno.json();
-            preencherTabela(dados);
+            dados = await retorno.json();
+            dados = dados[0].res;
+            preencherTabela(1);
         }
         buscarNomes();
 
-        function preencherTabela(dados) {
-            dados = dados[0].res;
+        function preencherTabela(pagina) {
             let tb = '';
-            for (info of dados) {
+            let inicioPagina = (pagina-1)*5;
+            let fimPagina = (pagina*5)-1;
+            for(i = inicioPagina; i <= fimPagina; i++){
+                let info = dados[i];
                 tb += `<tr>
                          <td>${info.ranking}</td>
                          <td>${info.nome}</td>
