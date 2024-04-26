@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        #campo {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bloco {
+            width: 150px;
+            height: 150px;
+            border: 2px solid gray;
+
+            cursor: pointer;
+            transition: all 300ms ease-in-out;
+        }
+
+        .bloco:hover {
+            /* opacity: 0.6; */
+            border: 2px solid black;
+        }
+
+        .active {
+            /* background-color: grey; */
+            transform: scale(0.9);
+            opacity: 0.6;
+        }
+
+        .bloco:active {
+            /* background-color: grey; */
+            transform: scale(0.9);
+            opacity: 0.6;
+        }
+
+        .verde {
+            background-color: #008000;
+        }
+
+        .amarelo {
+            background-color: yellow;
+        }
+
+        .vermelho {
+            background-color: red;
+        }
+
+        .azul {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="campo">
+        <div>
+            <div class="bloco verde" id="verde"></div>
+            <div class="bloco vermelho" id="vermelho"></div>
+        </div>
+        <div>
+            <div class="bloco amarelo" id="amarelo"></div>
+            <div class="bloco azul" id="azul"></div>
+        </div>
+    </section>
+
+    <script>
+
+        $(document).ready(() => {
+            $(".bloco").click(efeito);
+        });
+
+        function efeito() {
+            let bloco = this;
+            console.log(bloco.id);
+        }
+        function clique(id) {
+            let v = document.getElementById(id);
+            console.log(v);
+            // v = $(`#${id}`);
+            // alert(`#${id}`);
+            v.classList.toggle('active');
+            setTimeout(() => { v.classList.toggle('active'); }, 200);
+        }
+
+        function sortear() {
+            let n = Math.floor(Math.random() * 3);    
+            clique(blocos[n]);
+        }
+        
+        let blocos = ["verde","amarelo","vermelho","azul"];
+
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => { sortear(); }, 1000);
+        }
+
+    </script>
+</body>
+
+</html>
