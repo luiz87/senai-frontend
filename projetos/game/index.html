@@ -76,29 +76,38 @@
             overflow: hidden;
         }
 
-        body{
+        body {
             margin: 0px;
         }
 
-        #bt-iniciar{
+        #bt-iniciar {
             padding: 10px;
             font-size: large;
             cursor: pointer;
             text-transform: uppercase;
-            
+
             background-color: black;
             color: white;
             border: none;
             border-radius: 5%;
-            
+
         }
 
+        #alerta{
+            background-color: #ffffffde;
+            padding: 1%;
+            width: 100%;
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
     <section id="aguarde" class="aguarde">
-        <button onclick="iniciar()" id="bt-iniciar">Iniciar</button>
+        <div id="alerta">
+            <button onclick="iniciar()" id="bt-iniciar">Iniciar</button>
+            <p id="recorde">Recorde: 0 movimentos.</p>
+        </div>
     </section>
     <section id="campo">
         <div>
@@ -116,6 +125,8 @@
         $(document).ready(() => {
             $(".bloco").click(clique);
         });
+
+        let recorde = 0;
 
         let cont = 0;
         function clique() {
@@ -158,15 +169,21 @@
 
         let sorteados = [];
         let aguarde = document.getElementById("aguarde");
-        let btIniciar = document.getElementById("bt-iniciar");
-        function iniciar() {            
-            btIniciar.style.display = 'none';
+        let alerta = document.getElementById("alerta");
+        function iniciar() {
+            alerta.style.display = 'none';
             sortear();
         }
 
         function fim() {
             aguarde.classList.toggle('aguarde');
-            btIniciar.style.display = '';
+            alerta.style.display = '';
+            
+            if(sorteados.length-1 > recorde){
+                recorde = sorteados.length-1;
+                document.getElementById("recorde").innerText = `Recorde: ${recorde} movimentos.`;
+            }
+
             sorteados = [];
             cont = 0;
         }
