@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>    
+    <h4>Acho que vou desistir do curso!</h4>
+    <button onclick="alert('Vou ficar até o fim')">Não</button>
+    <button id="bt" onmouseover="mover()">Sim</button>
+    <script>
+        function mover() {
+            let b = document.querySelector("#bt");
+            b.style.position = 'relative';
+            let n = Math.floor(Math.random() * 80);
+            b.style.top = n+'%';
+            n = Math.floor(Math.random() * 80)-50;
+            b.style.left = n+'%';
+            n = Math.floor(Math.random() * 150)+50;
+            b.style.width = n+'px';
+            n = Math.floor(Math.random() * 150)+30;
+            b.style.height = n+'px'
+        }
+    </script>
+</body>
+</html>
