@@ -93,7 +93,7 @@
 
         }
 
-        #alerta{
+        #alerta {
             background-color: #ffffffde;
             padding: 1%;
             width: 100%;
@@ -129,8 +129,16 @@
         let recorde = 0;
 
         let cont = 0;
+        var toqueDo = new Audio("soms/do.mp3");
+        var toqueRe = new Audio("soms/re.mp3");
+        var toqueMi = new Audio("soms/mi.mp3");
+        var toqueFa = new Audio("soms/fa.mp3");
+
+        let toques = { "verde": toqueDo, "amarelo": toqueRe, "vermelho": toqueMi, "azul": toqueFa };
+
         function clique() {
             let bloco = this;
+            toques[bloco.id].play();
             if (blocos[sorteados[cont]] == bloco.id) {
                 cont++;
                 if (sorteados.length == cont) {
@@ -143,6 +151,7 @@
             }
         }
         function efeito(id) {
+            toques[id].play();
             let v = document.getElementById(id);
             console.log(v.id);
             v.classList.toggle('active');
@@ -178,9 +187,9 @@
         function fim() {
             aguarde.classList.toggle('aguarde');
             alerta.style.display = '';
-            
-            if(sorteados.length-1 > recorde){
-                recorde = sorteados.length-1;
+
+            if (sorteados.length - 1 > recorde) {
+                recorde = sorteados.length - 1;
                 document.getElementById("recorde").innerText = `Recorde: ${recorde} movimentos.`;
             }
 
