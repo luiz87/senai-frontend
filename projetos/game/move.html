@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+        }
+        #bloco{
+            width: 30px;
+            height: 30px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body onclick="mover()">    
+    
+    <div id="bloco"></div>
+    <script>
+        let b = document.querySelector("#bloco");
+        b.style.position = 'relative';
+        b.style.top = '0px';
+        b.style.left = '0px';
+        function mover() {
+            let y = b.style.top;
+            y = parseInt(y.replace("px",""));
+            y++;
+            b.style.top = `${y}px`;
+
+            let x = b.style.left;
+            x = parseInt(x.replace("px",""));
+            x++;
+            b.style.left = `${x}px`;
+
+        }
+
+        setInterval(mover, 1000);
+    </script>
+</body>
+</html>
