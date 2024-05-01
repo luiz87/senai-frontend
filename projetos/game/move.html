@@ -17,10 +17,9 @@
             border-radius: 50%;
         }
 
-        html{
+        html {
             overflow: hidden;
         }
-
     </style>
 </head>
 
@@ -43,19 +42,29 @@
             let maxY = window.innerHeight;
 
             let y = b.style.top;
-            y = parseInt(y.replace("px", ""));        
-            (y >= maxY-30)? direcaoY = "subir": "";
-            (y <= 0)? direcaoY = "baixo": "";
-            (direcaoY == "baixo") ? y = y +pulo : y = y -pulo;
+            y = parseInt(y.replace("px", ""));
+            (y >= maxY - 30) ? mudarDirecao("y","subir") : "";
+            (y <= 0) ? mudarDirecao("y","baixo") : "";
+            (direcaoY == "baixo") ? y = y + pulo : y = y - pulo;
             b.style.top = `${y}px`;
 
             let x = b.style.left;
             x = parseInt(x.replace("px", ""));
-            (x >= maxX-30)? direcaoX = "esquerda": mudarCor() ;
-            (x <= 0)? direcaoX = "direita" : mudarCor() ;
-            (direcaoX == "direita") ? x = x +pulo : x = x -pulo;
+            (x >= maxX - 30) ? mudarDirecao("x","esquerda") : "";
+            (x <= 0) ? mudarDirecao("x","direita") : "";
+            (direcaoX == "direita") ? x = x + pulo : x = x - pulo;
             b.style.left = `${x}px`;
 
+        }
+
+        function mudarDirecao(eixo, direcao) {
+            mudarCor();
+            if (eixo == "x") {
+                direcaoX = direcao
+            }
+            if (eixo == "y") {
+                direcaoY = direcao
+            }
         }
 
         function mudarCor() {
