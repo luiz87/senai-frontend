@@ -67,11 +67,17 @@
             }
         }
 
+        
+
         function mudarCor() {
             let red = Math.floor(Math.random() * 254);
             let green = Math.floor(Math.random() * 254);
             let blue = Math.floor(Math.random() * 254);
             b.style.backgroundColor = `rgb(${red},${green},${blue})`;
+            red = Math.floor(Math.random() * 254);
+            green = Math.floor(Math.random() * 254);
+            blue = Math.floor(Math.random() * 254);
+            document.body.style.backgroundColor = `rgb(${red},${green},${blue})`;
         }
 
         setInterval(mover, 10);
