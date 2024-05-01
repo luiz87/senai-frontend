@@ -51,14 +51,21 @@
 
             let x = b.style.left;
             x = parseInt(x.replace("px", ""));
-            (x >= maxX-30)? direcaoX = "esquerda": "";
-            (x <= 0)? direcaoX = "direita": "";
+            (x >= maxX-30)? direcaoX = "esquerda": mudarCor() ;
+            (x <= 0)? direcaoX = "direita" : mudarCor() ;
             (direcaoX == "direita") ? x = x +pulo : x = x -pulo;
             b.style.left = `${x}px`;
 
         }
 
-        setInterval(mover, 20);
+        function mudarCor() {
+            let red = Math.floor(Math.random() * 254);
+            let green = Math.floor(Math.random() * 254);
+            let blue = Math.floor(Math.random() * 254);
+            b.style.backgroundColor = `rgb(${red},${green},${blue})`;
+        }
+
+        setInterval(mover, 10);
     </script>
 </body>
 
