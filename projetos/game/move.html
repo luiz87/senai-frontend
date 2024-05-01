@@ -1,42 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
+        body {
             height: 100vh;
         }
-        #bloco{
+
+        #bloco {
             width: 30px;
             height: 30px;
             background-color: aquamarine;
+            border-radius: 50%;
         }
+
+        html{
+            overflow: hidden;
+        }
+
     </style>
 </head>
-<body onclick="mover()">    
-    
+
+<body onclick="mover()">
+
     <div id="bloco"></div>
     <script>
         let b = document.querySelector("#bloco");
         b.style.position = 'relative';
         b.style.top = '0px';
         b.style.left = '0px';
+
+        let direcaoX = "direita";
+        let direcaoY = "baixo";
+
+        let pulo = 5;
+
         function mover() {
+            let maxX = window.innerWidth;
+            let maxY = window.innerHeight;
+
             let y = b.style.top;
-            y = parseInt(y.replace("px",""));
-            y++;
+            y = parseInt(y.replace("px", ""));        
+            (y >= maxY-30)? direcaoY = "subir": "";
+            (y <= 0)? direcaoY = "baixo": "";
+            (direcaoY == "baixo") ? y = y +pulo : y = y -pulo;
             b.style.top = `${y}px`;
 
             let x = b.style.left;
-            x = parseInt(x.replace("px",""));
-            x++;
+            x = parseInt(x.replace("px", ""));
+            (x >= maxX-30)? direcaoX = "esquerda": "";
+            (x <= 0)? direcaoX = "direita": "";
+            (direcaoX == "direita") ? x = x +pulo : x = x -pulo;
             b.style.left = `${x}px`;
 
         }
 
-        setInterval(mover, 1000);
+        setInterval(mover, 20);
     </script>
 </body>
+
 </html>
