@@ -57,7 +57,14 @@
 
         }
 
+        var toqueDo = new Audio("soms/do.mp3");
+
         function mudarDirecao(eixo, direcao) {
+            // if (toqueDo.paused) {
+            //     toqueDo.play();
+            // } else {
+            //     toqueDo.currentTime = 0;
+            // }
             mudarCor();
             if (eixo == "x") {
                 direcaoX = direcao
@@ -65,9 +72,7 @@
             if (eixo == "y") {
                 direcaoY = direcao
             }
-        }
-
-        
+        }      
 
         function mudarCor() {
             let red = Math.floor(Math.random() * 254);
@@ -77,7 +82,7 @@
             red = Math.floor(Math.random() * 254);
             green = Math.floor(Math.random() * 254);
             blue = Math.floor(Math.random() * 254);
-            document.body.style.backgroundColor = `rgb(${red},${green},${blue})`;
+            // document.body.style.backgroundColor = `rgb(${red},${green},${blue})`;
         }
 
         setInterval(mover, 10);

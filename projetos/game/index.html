@@ -138,7 +138,12 @@
 
         function clique() {
             let bloco = this;
-            toques[bloco.id].play();
+            if (toques[bloco.id].paused) {
+                toques[bloco.id].play();
+            } else {
+                toques[bloco.id].currentTime = 0;
+            }
+            
             if (blocos[sorteados[cont]] == bloco.id) {
                 cont++;
                 if (sorteados.length == cont) {
