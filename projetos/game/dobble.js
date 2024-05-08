@@ -1,11 +1,10 @@
-let lsFiguras = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-let txt = "1";
-
+let lsFiguras = ['😊','😎','😍','🤣','🤐','🤯','😤','🤑','😉','😴','😘','😝','😨'];//];
+let txt = lsFiguras[0];
+let qtItens = 3;
 for (let i = 1; i < lsFiguras.length; i++) {
     txt += `,${lsFiguras[i]}`;
-    if (i % 3 == 0) txt += "\n1";
+    if (i % qtItens == 0 && i <lsFiguras.length-1) txt += "\n"+lsFiguras[0];
 }
-txt = txt.substr(0, txt.length - 2);
 let baralho = txt.split("\n");
 
 for (let i = 0; i < baralho.length; i++) {
@@ -17,17 +16,17 @@ while (baralho.length < lsFiguras.length) {
     let carta = [lsFiguras[grupo].toString()];
     baralho.push(carta);
     incluirFigura(carta);
-    if (Math.floor(baralho.length % 3 == 1)) grupo++;
+    if (Math.floor(baralho.length % qtItens == 1)) grupo++;
 }
 
 function incluirFigura(carta) {
-    let ii = (baralho.length - 1) % 3;
-    if (ii == 0) ii = 3;
-    let linha = ((grupo - 1) * 3) + 1
-    for (let i = linha; i < linha + 3; i++) {
+    let ii = (baralho.length - 1) % qtItens;
+    if (ii == 0) ii = qtItens;
+    let linha = ((grupo - 1) * qtItens) + 1
+    for (let i = linha; i < linha + qtItens; i++) {
         carta.push(baralho[i][ii]);
         ii++;
-        if (ii > 3) ii = 1;
+        if (ii > qtItens) ii = 1;
     }
 }
 console.log(baralho);

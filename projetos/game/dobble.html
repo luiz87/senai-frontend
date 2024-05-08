@@ -12,12 +12,15 @@
 <body>
     <table border="1" style="text-align: center;">
         <script>
+            let i = 1;
             for (const crt of baralho) {
                 document.write('<tr>')
+                document.write(`<td>${i}</td>`)
                 for (const c of crt) {
                     document.write(`<td>${c}</td>`)
                 }
                 document.write('</tr>')
+                i++;
             }
         </script>
     </table>
