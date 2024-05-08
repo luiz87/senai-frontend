@@ -1,9 +1,9 @@
-let lsFiguras = ['😊','😎','😍','🤣','🤐','🤯','😤','🤑','😉','😴','😘','😝','😨'];//];
+let lsFiguras = ['😊', '😎', '😍', '🤣', '🤐', '🤯', '😤', '🤑', '😉', '😴', '😘', '😝', '😨'];//];
 let txt = lsFiguras[0];
 let qtItens = 3;
 for (let i = 1; i < lsFiguras.length; i++) {
     txt += `,${lsFiguras[i]}`;
-    if (i % qtItens == 0 && i <lsFiguras.length-1) txt += "\n"+lsFiguras[0];
+    if (i % qtItens == 0 && i < lsFiguras.length - 1) txt += "\n" + lsFiguras[0];
 }
 let baralho = txt.split("\n");
 
@@ -30,3 +30,35 @@ function incluirFigura(carta) {
     }
 }
 console.log(baralho);
+obj = {};
+window.onload = () => {
+    lsTd = document.getElementsByTagName("td");
+    
+    for (const f of lsFiguras) {
+        obj[f] = []
+    }
+
+    for (const td of lsTd) {
+        try {
+            
+            obj[td.innerText].push(td)    
+            td.addEventListener("mouseover",mudarCor)
+            td.addEventListener("mouseout",mudarCor)
+            td.addEventListener("click",marcar)
+        } catch (error) {
+            
+        }        
+    }
+}
+
+function mudarCor() {
+    for (const o of obj[this.innerText]) {
+        o.classList.toggle("cor")
+    }
+}
+
+function marcar() {
+    for (const o of obj[this.innerText]) {
+        o.classList.toggle("marcado")
+    }
+}
