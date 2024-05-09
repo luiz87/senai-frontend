@@ -9,8 +9,8 @@
 
 <style>
     .bloco {
-        height: 50px;
-        width: 50px;
+        height: 70px;
+        width: 70px;
         background-color: gray;
 
         border-radius: 5%;
@@ -21,14 +21,14 @@
         justify-content: center;
         align-items: center;
 
-        font-size: 1.8rem;
+        font-size: 2.8rem;
     }
 
     span {
         background-color: aquamarine;
     }
 
-    .blocos {
+    #campo {
         display: grid;
         grid-template-columns: 25% 25% 25% 25% ;
         gap: 5px;
@@ -39,14 +39,15 @@
         justify-content: center;
     }
 
-    .bloco:active {
-        background-color: transparent;
+    h1{
+        text-align: center;
     }
 </style>
 
 <body>
-    <div id="tela">
-        <div class="blocos">
+    <h1>Jogo da memória</h1>      
+    <div id="tela">  
+        <div id="campo">
             <div class="bloco"></div>
             <div class="bloco"></div>
             <div class="bloco"></div>
