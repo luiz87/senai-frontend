@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .bloco {
+        height: 50px;
+        width: 50px;
+        background-color: gray;
+
+        border-radius: 5%;
+        border: 3px solid black;
+
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 1.8rem;
+    }
+
+    span {
+        background-color: aquamarine;
+    }
+
+    .blocos {
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25% ;
+        gap: 5px;
+    }
+
+    #tela {
+        display: flex;
+        justify-content: center;
+    }
+
+    .bloco:active {
+        background-color: transparent;
+    }
+</style>
+
+<body>
+    <div id="tela">
+        <div class="blocos">
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>   
+        </div>
+    </div>
+    <script>
+        lsBloco = document.getElementsByClassName('bloco');
+        for (const b of lsBloco) {
+            b.addEventListener('click',()=>{
+                mostar(b)
+            })
+        }
+
+        function mostar(b) {
+            b.innerHTML = "👌"
+        }
+    </script>
+
+</body>
+
+</html>
