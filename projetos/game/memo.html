@@ -24,7 +24,15 @@
         font-size: 2.8rem;
     }
 
-    span {
+    .bloco:hover {
+        background-color: aquamarine;
+    }
+
+    .bloco:active {
+        background-color: black;
+    }
+
+    .aberto{
         background-color: aquamarine;
     }
 
@@ -75,7 +83,8 @@
         }
 
         function mostar(b) {
-            b.innerHTML = "👌"
+            b.innerHTML = "👌";
+            b.classList.toggle('aberto');
         }
     </script>
 
