@@ -93,24 +93,23 @@
             i++;
         }
 
-        let aberto01 = "";
-        let aberto02 = "";
+        let aberto = ["",""];
 
         function mostar(b) {
             if (b.innerHTML != "") return;
 
-            if (aberto01 != "" && aberto02 != "") {
+            if (aberto[0] != "" && aberto[1] != "") {
                 testar();
             }
 
-            if (aberto01 == "") {
-                aberto01 = b
+            if (aberto[0] == "") {
+                aberto[0] = b
                 b.innerHTML = obj[b.id];
                 return;
             }
 
-            if (aberto02 == "") {
-                aberto02 = b
+            if (aberto[1] == "") {
+                aberto[1] = b
                 b.innerHTML = obj[b.id];
                 return;
             }
@@ -118,15 +117,13 @@
         }
 
         function testar() {
-            console.log(aberto01);
-            console.log(aberto01.innerHTML);
 
-            if (aberto01.innerHTML != aberto02.innerHTML) {
-                aberto01.innerHTML = "";
-                aberto02.innerHTML = "";
+            if (aberto[0].innerHTML != aberto[1].innerHTML) {
+                aberto[0].innerHTML = "";
+                aberto[1].innerHTML = "";
             }
-            aberto01 = "";
-            aberto02 = "";
+            aberto[0] = "";
+            aberto[1] = "";
         }
     </script>
 
