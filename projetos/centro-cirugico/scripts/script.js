@@ -44,7 +44,10 @@ function ataulizarTabela() {
         let i = 0;
         for (const obj of lista) {
             if(obj.nome != ""){
-                tbody += `<tr onclick='editar(${i})'><td class="${tpStatus[obj.status]}">${obj.nome}</td></tr>`;
+                tbody += `<tr onclick='editar(${i})'>
+                <td>${obj.nome}</td>
+                <td class="${tpStatus[obj.status]}">${obj.status}</td>
+                </tr>`;
             }
             i++;
         }
