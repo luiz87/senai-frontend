@@ -30,7 +30,7 @@
 
     .blocos {
         display: grid;
-        grid-template-columns: 25% 25% 25% 25% ;
+        grid-template-columns: 25% 25% 25% 25%;
         gap: 5px;
     }
 
@@ -62,19 +62,62 @@
             <div class="bloco"></div>
             <div class="bloco"></div>
             <div class="bloco"></div>
-            <div class="bloco"></div>   
+            <div class="bloco"></div>
         </div>
     </div>
     <script>
-        lsBloco = document.getElementsByClassName('bloco');
+        const lsBloco = document.getElementsByClassName('bloco');
+        let lsEmoticons = ["😎", "😒", "😁", "😉", "😂", "😍", "😘", "😭"];
+        const tamanho = lsEmoticons.length;
+        for (let i = 0; i < tamanho; i++) {
+            lsEmoticons.push(lsEmoticons[i])
+        }
+        let i = 0;
+        let obj = {};
         for (const b of lsBloco) {
-            b.addEventListener('click',()=>{
-                mostar(b)
-            })
+            b.addEventListener('click', () => {
+                mostar(b);
+            });
+            icon = lsEmoticons.splice(Math.floor(Math.random() * lsEmoticons.length), 1);
+            obj[`id${i}`] = icon;
+            b.id = `id${i}`;
+            i++;
         }
 
+        let aberto01 = "";
+        let aberto02 = "";
+
         function mostar(b) {
-            b.innerHTML = "👌"
+            if (b.innerHTML != "") return;
+
+            if (aberto01 != "" && aberto02 != "") {
+                testar();
+            }
+
+            if (aberto01 == "") {
+                aberto01 = b
+                b.innerHTML = obj[b.id];
+                return;
+            }
+
+            if (aberto02 == "") {
+                aberto02 = b
+                b.innerHTML = obj[b.id];
+                return;
+            }
+            
+        }
+
+        function testar() {
+            console.log(aberto01);
+            console.log(aberto01.innerHTML);
+
+            if (aberto01.innerHTML != aberto02.innerHTML) {
+                aberto01.innerHTML = "";
+                aberto02.innerHTML = "";
+            }
+            aberto01 = "";
+            aberto02 = "";
         }
     </script>
 
