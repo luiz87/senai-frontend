@@ -1,7 +1,7 @@
 document.getElementById('bt-apagar').addEventListener('click', apagar);
 document.getElementById('bt-gravar').addEventListener('click', gravar);
 document.getElementById('bt-novo').addEventListener('click', limparForm);
-let lsItem = [];
+let lista = [];
 
 let tpStatus = {
     "Em Fila": "text-bg-info",
@@ -12,24 +12,24 @@ let tpStatus = {
 function gravar() {
     let indice = document.getElementById('indice').value;
     let _lineNumber = document.getElementById('_lineNumber').value;
-    let item = document.getElementById('item').value;
+    let nome = document.getElementById('nome').value;
     let status = document.getElementById('status').value;
-    if (item != '' && status != '') {
+    if (nome != '' && status != '') {
         let obj = {};
-        obj.item = item;
+        obj.nome = nome;
         obj.status = status;
         if (indice == "") {
             createRow(obj).then((o) => {
-                lsItem.push(o);
+                lista.push(o);
                 ataulizarTabela();
             });
         } else {
             patchRow(_lineNumber, obj).then((o) => {
-                lsItem[indice] = o;
+                lista[indice] = o;
                 ataulizarTabela();
             });
         }
-        console.table(lsItem);
+        console.table(lista);
         
         limparForm();
     } else {
@@ -38,13 +38,13 @@ function gravar() {
 }
 
 function ataulizarTabela() {
-    localStorage.setItem("lsItem",JSON.stringify(lsItem));
+    localStorage.setItem("lista",JSON.stringify(lista));
     let tbody = '';
-    if (lsItem.length > 0) {
+    if (lista.length > 0) {
         let i = 0;
-        for (const obj of lsItem) {
-            if(obj.item != ""){
-                tbody += `<tr onclick='editar(${i})'><td class="${tpStatus[obj.status]}">${obj.item}</td></tr>`;
+        for (const obj of lista) {
+            if(obj.nome != ""){
+                tbody += `<tr onclick='editar(${i})'><td class="${tpStatus[obj.status]}">${obj.nome}</td></tr>`;
             }
             i++;
         }
@@ -57,15 +57,15 @@ function ataulizarTabela() {
 function limparForm() {
     document.getElementById('indice').value = "";
     document.getElementById('_lineNumber').value = "";
-    document.getElementById('item').value = "";
+    document.getElementById('nome').value = "";
     document.getElementById('status').value = "";
 }
 
 function editar(indice) {
-    obj = lsItem[indice];
+    obj = lista[indice];
     document.getElementById('indice').value = indice;
     document.getElementById('_lineNumber').value = obj._lineNumber;
-    document.getElementById('item').value = obj.item;
+    document.getElementById('nome').value = obj.nome;
     document.getElementById('status').value = obj.status;
 }
 
@@ -74,17 +74,17 @@ function apagar() {
     let _lineNumber = document.getElementById('_lineNumber').value;
     if (indice != "") {
         deleteRow(_lineNumber).then(() =>{
-            lsItem.splice(indice, 1);
+            lista.splice(indice, 1);
             ataulizarTabela();
         });
         limparForm();
     } else {
-        alert("Necessário selecionar algum item.")
+        alert("Necessário selecionar algum nome.")
     }
 }
 
 async function getData() {
-    const response = await fetch("https://api.zerosheets.com/v1/yfr");
+    const response = await fetch("https://api.zerosheets.com/v1/ww2");
     const data = await response.json();
 
     // will return an array of objects with the _lineNumber
@@ -98,7 +98,7 @@ async function createRow(payload) {
         column2: "bar"
     };
     */
-    const response = await fetch("https://api.zerosheets.com/v1/yfr", {
+    const response = await fetch("https://api.zerosheets.com/v1/ww2", {
       method: "POST",
       body: JSON.stringify(payload)
     });
@@ -114,7 +114,7 @@ async function patchRow(lineNumber, payload) {
         foo: "bar"
     };
     */
-    const url = "https://api.zerosheets.com/v1/yfr/" + lineNumber;
+    const url = "https://api.zerosheets.com/v1/ww2/" + lineNumber;
     const response = await fetch(url, {
       method: "PATCH",
       body: JSON.stringify(payload)
@@ -126,7 +126,7 @@ async function patchRow(lineNumber, payload) {
 }
 
 async function deleteRow(lineNumber) {
-    const url = "https://api.zerosheets.com/v1/yfr/" + lineNumber; // lineNumber comes from the get request
+    const url = "https://api.zerosheets.com/v1/ww2/" + lineNumber; // lineNumber comes from the get request
     await fetch(url, {
         method: "DELETE"
     });
@@ -134,6 +134,6 @@ async function deleteRow(lineNumber) {
 }
 
 getData().then( (ls) => {
-    lsItem = ls;
+    lista = ls;
     ataulizarTabela();
 } );
