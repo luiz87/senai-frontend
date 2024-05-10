@@ -4,9 +4,9 @@ document.getElementById('bt-novo').addEventListener('click', limparForm);
 let lista = [];
 
 let tpStatus = {
-    "Em Fila": "text-bg-info",
-    "Iniciado": "text-bg-success",
-    "Concluido": "text-bg-danger"
+    "Pré Operatório": "text-bg-info",
+    "Transferido": "text-bg-success",
+    "Recuperação": "text-bg-danger"
 }
 
 function gravar() {
