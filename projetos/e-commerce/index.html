@@ -1,11 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&family=Trocchi&display=swap"
+        rel="stylesheet">
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        color: #3b0a0a;
+    }
+    body{
+        
+    }
+
+    main {
+        background-color: #efedec;
+        width: 1414px;
+        /* height: 100vh; */
+        /* padding: 95px; */
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .item {
+        width: 397px;
+        height: 524px;
+        background-color: white;
+        text-align: center;
+    }
+
+    .item img {
+        margin-top: 30px;
+        width: 330px;
+        height: 330px;
+    }
+
+    h1 {
+        font-family: "Trocchi", serif;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 4rem;
+    }
+
+    h2 {
+        font-family: "Trocchi", serif;
+        font-weight: 600;
+        font-style: normal;
+    }
+
+    p {
+        font-family: "Quattrocento", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .item h2{
+        margin-top: 15px;
+    }
+
+    .item h2{
+        margin-top: 15px;
+    }
+
+    .item .valor{
+        margin-top: 20px;
+        font-weight: 900;
+        font-size: 1.6rem;
+    }
+
+    header p{
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    .descricao{
+        font-size: 1.3rem;
+    }
+
+    section{
+        
+        display: grid;
+        /* grid-template-columns: 33.33% 33.33% 33.33%; */
+        grid-template-columns: repeat(auto-fit,minmax(min(397px,100%),1fr));
+        grid-gap: 1rem;
+        margin: 25px 95px 80px;
+    }
+
+    header{
+        margin: 55px 95px 0px;
+    }
+
+    #bt-vela{
+        width: 115px;
+        height: 115px;
+        background-color: #3b0a0a;
+        border-radius: 50%;
+        float: right;
+    }
+</style>
+
 <body>
-    
+    <main>
+        <header>
+            <div id="bt-vela"></div>
+            <h1>Lira e Cia</h1>
+            <p>Descubra nosso catálogo de velas aromáticas e criativas</p>
+            
+        </header>
+        <section>
+            <div class="item">
+                <img src="img-1.png" alt="">
+                <h2 class="nome">Banho de Mar</h2>
+                <p class="descricao">vela aromática - 300g</p>
+                <p class="valor">R$39,00</p>
+            </div>
+
+            <div class="item">
+                <img src="img-1.png" alt="">
+                <h2 class="nome">Banho de Mar</h2>
+                <p class="descricao">vela aromática - 300g</p>
+                <p class="valor">R$39,00</p>
+            </div>
+
+            <div class="item">
+                <img src="img-1.png" alt="">
+                <h2 class="nome">Banho de Mar</h2>
+                <p class="descricao">vela aromática - 300g</p>
+                <p class="valor">R$39,00</p>
+            </div>
+
+            <div class="item">
+                <img src="img-1.png" alt="">
+                <h2 class="nome">Banho de Mar</h2>
+                <p class="descricao">vela aromática - 300g</p>
+                <p class="valor">R$39,00</p>
+            </div>
+
+            <div class="item">
+                <img src="img-1.png" alt="">
+                <h2 class="nome">Banho de Mar</h2>
+                <p class="descricao">vela aromática - 300g</p>
+                <p class="valor">R$39,00</p>
+            </div>
+
+            <div class="item">
+                <img src="img-1.png" alt="">
+                <h2 class="nome">Banho de Mar</h2>
+                <p class="descricao">vela aromática - 300g</p>
+                <p class="valor">R$39,00</p>
+            </div>
+        </section>
+    </main>
 </body>
+
 </html>
