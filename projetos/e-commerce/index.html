@@ -45,7 +45,7 @@
     }
 
     .add {
-        
+
         height: 100%;
         width: 100%;
         z-index: 1;
@@ -68,7 +68,7 @@
 
     .add i {
         font-size: 10rem;
-        font-weight: 900;        
+        font-weight: 900;
         /* color: white; */
     }
 
@@ -139,8 +139,43 @@
         align-items: center;
         cursor: pointer;
     }
-    #bt-vela img{
+
+    #bt-vela img {
         width: 40%;
+    }
+
+    @media screen and (max-width: 1415px) {
+        main {
+            background-color: red;
+        }
+
+        .item {
+            width: 300px;
+            height: 420px;
+        }
+
+        .item img {
+            width: 240px;
+            height: 240px;
+        }
+    }
+
+    @media screen and (max-width: 830px) {
+        main {
+            background-color: yellow;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .item {
+            width: 300px;
+            height: 420px;
+        }
+
+        .item img {
+            width: 240px;
+            height: 240px;
+        }
     }
 </style>
 
@@ -171,7 +206,7 @@
                 <p class="valor">R$39,00</p>
             </div>
             `;
-            produtos[`id${i}`] = {quantidade:0};
+            produtos[`id${i}`] = { quantidade: 0 };
         }
 
         lsItem = document.getElementsByClassName('item');
