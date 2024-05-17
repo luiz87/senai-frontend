@@ -42,7 +42,7 @@
     }
 
     .add {
-        background-color: #534c0b71;
+        
         height: 100%;
         width: 100%;
         z-index: 1;
@@ -59,6 +59,7 @@
     }
 
     .active {
+        background-color: #534c0b71;
         display: flex;
     }
 
@@ -135,13 +136,20 @@
         background-color: #3b0a0a;
         border-radius: 50%;
         float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    #bt-vela img{
+        width: 40%;
     }
 </style>
 
 <body>
     <main>
         <header>
-            <div id="bt-vela"></div>
+            <div id="bt-vela"><img src="vela.svg" alt=""></div>
             <h1>Lira e Cia</h1>
             <p>Descubra nosso catálogo de velas aromáticas e criativas</p>
         </header>
@@ -151,9 +159,10 @@
     </main>
     <script>
         lista = document.getElementById('lista');
+        produtos = {};
         for (let i = 0; i < 9; i++) {
             lista.innerHTML += `
-            <div class="item">
+            <div class="item" id="id${i}">
                 <div class="add">
                     <i class="bi bi-cart"></i>
                 </div>
@@ -164,6 +173,7 @@
                 <p class="valor">R$39,00</p>
             </div>
             `;
+            produtos[`id${i}`] = {quantidade:0};
         }
 
         lsItem = document.getElementsByClassName('item');
@@ -173,8 +183,10 @@
                 add.classList.toggle('active');
                 if (add.innerHTML == '<i class="bi bi-cart-check"></i>') {
                     add.innerHTML = '<i class="bi bi-cart"></i>'
+                    produtos[item.id].quantidade = 0;
                 } else {
-                    add.innerHTML = '<i class="bi bi-cart-check"></i>'
+                    add.innerHTML = '<i class="bi bi-cart-check"></i>';
+                    produtos[item.id].quantidade = 1;
                 }
             })
         }
