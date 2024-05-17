@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>zz
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -20,18 +20,15 @@
 
     body {
         background-color: #3b0a0a;
+        display: flex;
+        justify-content: center;
     }
 
     main {
         background-color: #efedec;
         width: 1414px;
-        padding: 95px;
+        padding: 20px 95px;
         box-sizing: border-box;
-    }
-
-    body {
-        display: flex;
-        justify-content: center;
     }
 
     .item {
@@ -39,13 +36,11 @@
         height: 524px;
         background-color: white;
         text-align: center;
-        /* cursor: pointer; */
         position: relative;
         margin: 10px 0px;
     }
 
     .add {
-
         height: 100%;
         width: 100%;
         z-index: 1;
@@ -69,7 +64,6 @@
     .add i {
         font-size: 10rem;
         font-weight: 900;
-        /* color: white; */
     }
 
     .item img {
@@ -145,10 +139,6 @@
     }
 
     @media screen and (max-width: 1415px) {
-        main {
-            background-color: red;
-        }
-
         .item {
             width: 300px;
             height: 420px;
@@ -162,19 +152,63 @@
 
     @media screen and (max-width: 830px) {
         main {
-            background-color: yellow;
+            /* background-color: yellow; */
             width: 100%;
-            padding: 20px;
+            padding: 0px 20px;
         }
 
         .item {
-            width: 300px;
-            height: 420px;
+            width: 160px;
+            height: 240px;
         }
 
         .item img {
-            width: 240px;
-            height: 240px;
+            width: 140px;
+            height: 140px;
+            margin-top: 10px;
+        }
+
+        .item h2 {
+            font-size: 0.8rem;
+        }
+
+        .item .valor {
+            margin-top: 10px;
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .item .descricao {
+            font-size: 0.6rem;
+        }
+
+        .add i {
+            font-size: 4rem;
+            font-weight: 900;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        header p {
+            font-size: 1rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        header{
+            position: sticky;
+            height: 50px;
+            top: 0;
+            padding: 10px 0px;
+            z-index: 2;
+            background-color: #efedec;
+        }
+
+        #bt-vela {
+            width: 50px;
+            height: 50px;
         }
     }
 </style>
@@ -182,9 +216,9 @@
 <body>
     <main>
         <header>
-            <div id="bt-vela"><img src="vela.svg" alt=""></div>
-            <h1>Lira e Cia</h1>
-            <p>Descubra nosso catálogo de velas aromáticas e criativas</p>
+                <div id="bt-vela"><img src="vela.svg" alt=""></div>
+                <h1>Lira e Cia</h1>
+                <p>Descubra nosso catálogo de velas aromáticas e criativas</p>
         </header>
         <section id="lista">
 
