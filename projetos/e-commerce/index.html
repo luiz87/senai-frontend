@@ -25,6 +25,8 @@
     main {
         background-color: #efedec;
         width: 1414px;
+        padding: 95px;
+        box-sizing: border-box;
     }
 
     body {
@@ -39,6 +41,7 @@
         text-align: center;
         /* cursor: pointer; */
         position: relative;
+        margin: 10px 0px;
     }
 
     .add {
@@ -119,15 +122,10 @@
     }
 
     section {
-        display: grid;
-        /* grid-template-columns: 33.33% 33.33% 33.33%; */
-        grid-template-columns: repeat(auto-fit, minmax(min(397px, 100%), 1fr));
-        grid-gap: 1rem;
-        margin: 25px 95px 80px;
-    }
-
-    header {
-        margin: 55px 95px 0px 95px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
     }
 
     #bt-vela {
