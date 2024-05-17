@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head>zz
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&family=Trocchi&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <style>
     * {
@@ -16,15 +17,14 @@
         padding: 0;
         color: #3b0a0a;
     }
-    body{
-        
+
+    body {
+        background-color: #3b0a0a;
     }
 
     main {
         background-color: #efedec;
         width: 1414px;
-        /* height: 100vh; */
-        /* padding: 95px; */
     }
 
     body {
@@ -37,12 +37,42 @@
         height: 524px;
         background-color: white;
         text-align: center;
+        /* cursor: pointer; */
+        position: relative;
+    }
+
+    .add {
+        background-color: #534c0b71;
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+        position: absolute;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #3b0a0a;
+    }
+
+    .item:hover .add {
+        display: flex;
+        cursor: pointer;
+    }
+
+    .active {
+        display: flex;
+    }
+
+    .add i {
+        font-size: 10rem;
+        font-weight: 900;        
+        /* color: white; */
     }
 
     .item img {
         margin-top: 30px;
         width: 330px;
         height: 330px;
+
     }
 
     h1 {
@@ -64,43 +94,42 @@
         font-style: normal;
     }
 
-    .item h2{
+    .item h2 {
         margin-top: 15px;
     }
 
-    .item h2{
+    .item h2 {
         margin-top: 15px;
     }
 
-    .item .valor{
+    .item .valor {
         margin-top: 20px;
         font-weight: 900;
         font-size: 1.6rem;
     }
 
-    header p{
+    header p {
         font-size: 1.4rem;
         font-weight: 500;
     }
 
-    .descricao{
+    .descricao {
         font-size: 1.3rem;
     }
 
-    section{
-        
+    section {
         display: grid;
         /* grid-template-columns: 33.33% 33.33% 33.33%; */
-        grid-template-columns: repeat(auto-fit,minmax(min(397px,100%),1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(397px, 100%), 1fr));
         grid-gap: 1rem;
         margin: 25px 95px 80px;
     }
 
-    header{
-        margin: 55px 95px 0px;
+    header {
+        margin: 55px 95px 0px 95px;
     }
 
-    #bt-vela{
+    #bt-vela {
         width: 115px;
         height: 115px;
         background-color: #3b0a0a;
@@ -115,52 +144,41 @@
             <div id="bt-vela"></div>
             <h1>Lira e Cia</h1>
             <p>Descubra nosso catálogo de velas aromáticas e criativas</p>
-            
         </header>
-        <section>
-            <div class="item">
-                <img src="img-1.png" alt="">
-                <h2 class="nome">Banho de Mar</h2>
-                <p class="descricao">vela aromática - 300g</p>
-                <p class="valor">R$39,00</p>
-            </div>
+        <section id="lista">
 
-            <div class="item">
-                <img src="img-1.png" alt="">
-                <h2 class="nome">Banho de Mar</h2>
-                <p class="descricao">vela aromática - 300g</p>
-                <p class="valor">R$39,00</p>
-            </div>
-
-            <div class="item">
-                <img src="img-1.png" alt="">
-                <h2 class="nome">Banho de Mar</h2>
-                <p class="descricao">vela aromática - 300g</p>
-                <p class="valor">R$39,00</p>
-            </div>
-
-            <div class="item">
-                <img src="img-1.png" alt="">
-                <h2 class="nome">Banho de Mar</h2>
-                <p class="descricao">vela aromática - 300g</p>
-                <p class="valor">R$39,00</p>
-            </div>
-
-            <div class="item">
-                <img src="img-1.png" alt="">
-                <h2 class="nome">Banho de Mar</h2>
-                <p class="descricao">vela aromática - 300g</p>
-                <p class="valor">R$39,00</p>
-            </div>
-
-            <div class="item">
-                <img src="img-1.png" alt="">
-                <h2 class="nome">Banho de Mar</h2>
-                <p class="descricao">vela aromática - 300g</p>
-                <p class="valor">R$39,00</p>
-            </div>
         </section>
     </main>
+    <script>
+        lista = document.getElementById('lista');
+        for (let i = 0; i < 9; i++) {
+            lista.innerHTML += `
+            <div class="item">
+                <div class="add">
+                    <i class="bi bi-cart"></i>
+                </div>
+                <div class="item-over"></div>
+                <img src="img-1.png" alt="">
+                <h2 class="nome">Banho de Mar</h2>
+                <p class="descricao">vela aromática - 300g</p>
+                <p class="valor">R$39,00</p>
+            </div>
+            `;
+        }
+
+        lsItem = document.getElementsByClassName('item');
+        for (const item of lsItem) {
+            item.addEventListener('click', () => {
+                add = item.querySelector('.add');
+                add.classList.toggle('active');
+                if (add.innerHTML == '<i class="bi bi-cart-check"></i>') {
+                    add.innerHTML = '<i class="bi bi-cart"></i>'
+                } else {
+                    add.innerHTML = '<i class="bi bi-cart-check"></i>'
+                }
+            })
+        }
+    </script>
 </body>
 
 </html>
