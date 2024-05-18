@@ -162,7 +162,7 @@
         justify-content: center;
 
         position: fixed;
-        display: flex;
+        /* display: flex; */
 
     }
 
@@ -313,7 +313,6 @@
         .qtItem,
         td {
             font-size: 1rem;
-            margin: 5px;
         }
     }
 </style>
@@ -341,14 +340,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="tdProduto">Banho de Mar</td>
-                        <td>39,00</td>
-                        <td><i class="bi bi-dash-square-fill"></i>
-                            <span class="qtItem">0</span>
-                            <i class="bi bi-plus-square-fill"></i>
-                        </td>
-                    </tr>
+
                 </tbody>
             </table>
             <div id="fechar">Continuar comprando</div>
@@ -356,18 +348,19 @@
     </div>
     <script>
         let lista = document.getElementById('lista');
-        let produtos = {};
+        let produtos = [{ nome: "Banho de Mar", valor: 39.99 }, { nome: "Passeio na Floresta", valor: 39.99 }, { nome: "Trio Bom dia", valor: 39.99 }, { nome: "Banho de Mar", valor: 39.99 }, { nome: "Passeio na Floresta", valor: 39.99 }, { nome: "Trio Bom dia", valor: 39.99 }];
         let divQt = document.getElementById('quantidade');
         let btVela = document.getElementById('bt-vela');
         let fechar = document.getElementById('fechar');
         let modal = document.querySelector('.modal');
         btVela.addEventListener('click', () => {
             modal.classList.toggle('ativarModal');
+            atualizarTabela();
         });
         fechar.addEventListener('click', () => {
             modal.classList.toggle('ativarModal');
         });
-        for (let i = 0; i < 9; i++) {
+        for (const i in produtos) {
             lista.innerHTML += `
             <div class="item" id="id${i}">
                 <div class="add">
@@ -375,12 +368,12 @@
                 </div>
                 <div class="item-over"></div>
                 <img src="img-1.png" alt="">
-                <h2 class="nome">Banho de Mar</h2>
+                <h2 class="nome">${produtos[i].nome}</h2>
                 <p class="descricao">vela aromática - 300g</p>
-                <p class="valor">R$39,00</p>
+                <p class="valor">R$${produtos[i].valor}</p>
             </div>
             `;
-            produtos[`id${i}`] = { quantidade: 0 };
+            produtos[i].quantidade = 0 ;
         }
 
         lsItem = document.getElementsByClassName('item');
@@ -390,16 +383,55 @@
                 add.classList.toggle('active');
                 if (add.innerHTML == '<i class="bi bi-cart-check"></i>') {
                     add.innerHTML = '<i class="bi bi-cart"></i>'
-                    produtos[item.id].quantidade = 0;
+                    produtos[item.id.replace('id', '')].quantidade = 0;
                     let qt = Number(divQt.innerHTML);
                     divQt.innerHTML = --qt;
                 } else {
                     add.innerHTML = '<i class="bi bi-cart-check"></i>';
-                    produtos[item.id].quantidade = 1;
+                    produtos[item.id.replace('id', '')].quantidade = 1;
                     let qt = Number(divQt.innerHTML);
                     divQt.innerHTML = ++qt;
                 }
             });
+        }
+        let tbody = document.querySelector('tbody');
+        function atualizarTabela() {
+            tbody.innerHTML = '';
+            let i = 0;
+            for (const p of produtos) {
+                if (p.quantidade > 0) {
+                    tbody.innerHTML += `
+                            <tr>
+                                    <td class="tdProduto">${p.nome}</td>
+                                    <td>${p.valor * p.quantidade}</td>
+                                    <td><i class="bi bi-dash-square-fill" id="dash${i}"></i>
+                                        <span class="qtItem">${p.quantidade}</span>
+                                        <i class="bi bi-plus-square-fill" id="plus${i}"></i>
+                                    </td>
+                                </tr>
+                            `;
+
+                }
+                i++;
+            }
+            atulizarBt('plus',1);
+            atulizarBt('dash',-1);
+        }
+
+        function atulizarBt(botao,qt) {
+            let botoes = tbody.getElementsByClassName(`bi-${botao}-square-fill`);
+            for (const bt of botoes) {
+                bt.addEventListener('click',() => {
+                    console.log(bt);
+                    let id = Number(bt.id.replace(botao,''));
+                    produtos[id].quantidade += qt;
+                    if(produtos[id].quantidade == 0){
+                        let item = document.getElementById('id'+id);
+                        item.click();
+                    }
+                    atualizarTabela();
+                });
+            }
         }
     </script>
 </body>
