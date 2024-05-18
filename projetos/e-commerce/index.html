@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -150,6 +150,82 @@
         font-family: "Quattrocento", serif;
     }
 
+    .modal {
+        height: 100vh;
+        width: 100%;
+        background-color: #efedec;
+        top: 0;
+        left: 0;
+        display: none;
+        z-index: 3;
+        position: relative;
+        justify-content: center;
+
+        position: fixed;
+        display: flex;
+
+    }
+
+    .modal h1 {
+        font-size: 2rem;
+    }
+
+    .modal .content {
+        position: relative;
+        width: 900px;
+    }
+
+    .ativarModal {
+        display: flex;
+    }
+
+    .content #fechar {
+        position: absolute;
+        float: right;
+        cursor: pointer;
+    }
+
+    .modal table {
+        width: 100%;
+    }
+
+    tr th {
+        background-color: #3b0a0a;
+        color: #efedec;
+        text-transform: uppercase;
+        padding: 5px;
+    }
+
+    th,
+    td {
+        border-collapse: collapse;
+        border-bottom: 1px solid #000;
+        text-align: center;
+    }
+
+    td {
+        font-family: "Quattrocento", serif;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .bi-dash-square-fill,
+    .bi-plus-square-fill {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .qtItem {
+        margin: 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        font-family: "Quattrocento", serif;
+    }
+
+    .tdProduto {
+        text-align: left;
+    }
+
     @media screen and (max-width: 1415px) {
         .item {
             width: 300px;
@@ -227,49 +303,18 @@
             height: 15px;
             font-size: 0.5rem;
         }
-    }
 
-    .modal {
-        height: 100vh;
-        width: 100%;
-        background-color: #efedec;
-        top: 0;
-        left: 0;
-        display: none;
-        z-index: 3;
-        position: relative;
-    }
+        .bi-dash-square-fill,
+        .bi-plus-square-fill {
+            font-size: 1rem;
+            cursor: pointer;
+        }
 
-    .modal .content{
-        margin: 50px;
-        position: relative;
-    }
-
-    .ativarModal {
-        position: fixed;
-        display: block;
-    }
-
-    .content #fechar {
-        position: absolute;
-        float: right;
-        cursor: pointer;
-    }
-
-    .modal table {
-        width: 100%;
-    }
-
-    tr th {
-        background-color: #3b0a0a;
-        color: #efedec;
-        text-align: left;
-    }
-
-    th,
-    td {
-        border-collapse: collapse;
-        border-bottom: 1px solid #000;
+        .qtItem,
+        td {
+            font-size: 1rem;
+            margin: 5px;
+        }
     }
 </style>
 
@@ -286,20 +331,23 @@
     </main>
     <div class="modal">
         <div class="content">
-            <h1>Produtos</h1>
+            <h1>Produtos Selecionados</h1>
             <table>
                 <thead>
                     <tr>
-                        <th width="50%">produto</th>
+                        <th width="50%" class="tdProduto">produto</th>
                         <th width="20%">valor</th>
                         <th width="20%">qt</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>XXX</td>
-                        <td>R$39,00</td>
-                        <td>1</td>
+                        <td class="tdProduto">Banho de Mar</td>
+                        <td>39,00</td>
+                        <td><i class="bi bi-dash-square-fill"></i>
+                            <span class="qtItem">0</span>
+                            <i class="bi bi-plus-square-fill"></i>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -349,10 +397,9 @@
                     add.innerHTML = '<i class="bi bi-cart-check"></i>';
                     produtos[item.id].quantidade = 1;
                     let qt = Number(divQt.innerHTML);
-                    // qt++;
                     divQt.innerHTML = ++qt;
                 }
-            })
+            });
         }
     </script>
 </body>
