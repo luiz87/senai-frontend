@@ -162,7 +162,7 @@
         justify-content: center;
 
         position: fixed;
-        /* display: flex; */
+        display: flex;
 
     }
 
@@ -179,10 +179,24 @@
         display: flex;
     }
 
-    .content #fechar {
-        position: absolute;
-        float: right;
+    .modal-botoes{        
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .modal-botoes *{
+        border: 2px solid #3b0a0a;
+        background-color: #3b0a0a36;
+        padding: 10px;
+        border-radius: 5;
         cursor: pointer;
+    }
+
+    #valor-total{
+        font-size: 1rem;
+        font-family: "Quattrocento", serif;
+        margin: 10px 0px;
+        text-align: center;
     }
 
     .modal table {
@@ -343,12 +357,18 @@
 
                 </tbody>
             </table>
-            <div id="fechar">Continuar comprando</div>
+            <h2 id="valor-total">
+                O valor total da compra R$:199.95
+            </h2>
+            <div class="modal-botoes">
+                <button id="fechar">Continuar Comprando</button>
+                <button id="enviar">Enviar Pedido</button>
+            </div>
         </div>
     </div>
+    <script src="produtos.js"></script>
     <script>
         let lista = document.getElementById('lista');
-        let produtos = [{ nome: "Banho de Mar", valor: 39.99 }, { nome: "Passeio na Floresta", valor: 39.99 }, { nome: "Trio Bom dia", valor: 39.99 }, { nome: "Banho de Mar", valor: 39.99 }, { nome: "Passeio na Floresta", valor: 39.99 }, { nome: "Trio Bom dia", valor: 39.99 }];
         let divQt = document.getElementById('quantidade');
         let btVela = document.getElementById('bt-vela');
         let fechar = document.getElementById('fechar');
@@ -373,7 +393,7 @@
                 <p class="valor">R$${produtos[i].valor}</p>
             </div>
             `;
-            produtos[i].quantidade = 0 ;
+            produtos[i].quantidade = 0;
         }
 
         lsItem = document.getElementsByClassName('item');
@@ -398,8 +418,10 @@
         function atualizarTabela() {
             tbody.innerHTML = '';
             let i = 0;
+            let total = 0;
             for (const p of produtos) {
                 if (p.quantidade > 0) {
+                    total += p.valor * p.quantidade
                     tbody.innerHTML += `
                             <tr>
                                     <td class="tdProduto">${p.nome}</td>
@@ -414,19 +436,22 @@
                 }
                 i++;
             }
-            atulizarBt('plus',1);
-            atulizarBt('dash',-1);
+
+            document.getElementById('valor-total').innerHTML = `O valor total da compra R$:${total}`;
+            
+            atulizarBt('plus', 1);
+            atulizarBt('dash', -1);
         }
 
-        function atulizarBt(botao,qt) {
+        function atulizarBt(botao, qt) {
             let botoes = tbody.getElementsByClassName(`bi-${botao}-square-fill`);
             for (const bt of botoes) {
-                bt.addEventListener('click',() => {
+                bt.addEventListener('click', () => {
                     console.log(bt);
-                    let id = Number(bt.id.replace(botao,''));
+                    let id = Number(bt.id.replace(botao, ''));
                     produtos[id].quantidade += qt;
-                    if(produtos[id].quantidade == 0){
-                        let item = document.getElementById('id'+id);
+                    if (produtos[id].quantidade == 0) {
+                        let item = document.getElementById('id' + id);
                         item.click();
                     }
                     atualizarTabela();

@@ -1,0 +1,1 @@
+let produtos = [{ nome: "Banho de Mar", valor: 39.99 }, { nome: "Passeio na Floresta", valor: 39.99 }, { nome: "Trio Bom dia", valor: 39.99 }, { nome: "Banho de Mar", valor: 39.99 }, { nome: "Passeio na Floresta", valor: 39.99 }, { nome: "Trio Bom dia", valor: 39.99 }];
