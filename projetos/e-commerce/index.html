@@ -162,7 +162,7 @@
         justify-content: center;
 
         position: fixed;
-        display: flex;
+        /* display: flex; */
 
     }
 
@@ -179,12 +179,12 @@
         display: flex;
     }
 
-    .modal-botoes{        
+    .modal-botoes {
         display: flex;
         justify-content: space-around;
     }
 
-    .modal-botoes *{
+    .modal-botoes * {
         border: 2px solid #3b0a0a;
         background-color: #3b0a0a36;
         padding: 10px;
@@ -192,7 +192,7 @@
         cursor: pointer;
     }
 
-    #valor-total{
+    #valor-total {
         font-size: 1rem;
         font-family: "Quattrocento", serif;
         margin: 10px 0px;
@@ -438,7 +438,7 @@
             }
 
             document.getElementById('valor-total').innerHTML = `O valor total da compra R$:${total}`;
-            
+
             atulizarBt('plus', 1);
             atulizarBt('dash', -1);
         }
@@ -458,6 +458,24 @@
                 });
             }
         }
+
+        let enviar = document.getElementById('enviar');
+        enviar.addEventListener('click', () => {
+            let msg = 'Olá gostaria de fazer o seguinte pedido:\n';
+            let total = 0;
+            for (const prd of produtos) {
+                if (prd.quantidade > 0) {
+                    let parcial = prd.quantidade * prd.valor;
+                    total += parcial;
+                    msg += `${prd.nome} (${prd.quantidade} x ${prd.valor}) = ${parcial}\n`;
+                }
+            }
+            msg += `Valor Final = ${total}`;
+            let fone = '';
+            msg = encodeURI(msg);
+            link = `https://api.whatsapp.com/send?phone=${fone}&text=${msg}`;
+            window.open(link, '_blank');
+        });
     </script>
 </body>
 
