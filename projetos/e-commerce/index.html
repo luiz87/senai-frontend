@@ -250,6 +250,10 @@
             width: 240px;
             height: 240px;
         }
+
+        #lista{
+            justify-content: space-around;
+        }
     }
 
     @media screen and (max-width: 830px) {
@@ -387,10 +391,10 @@
                     <i class="bi bi-cart"></i>
                 </div>
                 <div class="item-over"></div>
-                <img src="img-1.png" alt="">
+                <img src="${produtos[i].img}" alt="">
                 <h2 class="nome">${produtos[i].nome}</h2>
                 <p class="descricao">vela aromática - 300g</p>
-                <p class="valor">R$${produtos[i].valor}</p>
+                <p class="valor">R$${produtos[i].valor.toFixed(2)}</p>
             </div>
             `;
             produtos[i].quantidade = 0;
@@ -425,7 +429,7 @@
                     tbody.innerHTML += `
                             <tr>
                                     <td class="tdProduto">${p.nome}</td>
-                                    <td>${p.valor * p.quantidade}</td>
+                                    <td>${(p.valor * p.quantidade).toFixed(2)}</td>
                                     <td><i class="bi bi-dash-square-fill" id="dash${i}"></i>
                                         <span class="qtItem">${p.quantidade}</span>
                                         <i class="bi bi-plus-square-fill" id="plus${i}"></i>
@@ -437,7 +441,7 @@
                 i++;
             }
 
-            document.getElementById('valor-total').innerHTML = `O valor total da compra R$:${total}`;
+            document.getElementById('valor-total').innerHTML = `O valor total da compra R$:${total.toFixed(2)}`;
 
             atulizarBt('plus', 1);
             atulizarBt('dash', -1);
@@ -467,7 +471,7 @@
                 if (prd.quantidade > 0) {
                     let parcial = prd.quantidade * prd.valor;
                     total += parcial;
-                    msg += `${prd.nome} (${prd.quantidade} x ${prd.valor}) = ${parcial}\n`;
+                    msg += `${prd.nome} (${prd.quantidade} x ${prd.valor.toFixed(2)}) = ${parcial.toFixed(2)}\n`;
                 }
             }
             msg += `Valor Final = ${total}`;
