@@ -522,4 +522,9 @@ footer {
     padding: 3px;
     border-radius: 5px;
     margin-top: 10px;
+    cursor: pointer;
+}
+
+.tela-carrinho .bi{
+    cursor: pointer;
 }
