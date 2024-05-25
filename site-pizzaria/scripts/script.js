@@ -28,20 +28,20 @@ for (const p of produtos) {
 
 let telaCarrinho = document.querySelector('.tela-carrinho');
 let continuar = document.querySelector('.continuar');
-continuar.addEventListener('click', ()=>{
+continuar.addEventListener('click', () => {
     telaCarrinho.classList.toggle('ocultar-tela-carrinho');
 })
 
 let compras = document.querySelector('.compras');
-compras.addEventListener('click', ()=>{
+compras.addEventListener('click', () => {
     telaCarrinho.classList.toggle('ocultar-tela-carrinho');
     menuToggle.click(); // fechar o menu suspenso nas versões mobile
 })
 
 let lsPedido = document.querySelectorAll('.pedir');
 for (const bt of lsPedido) {
-    bt.addEventListener('click', ()=>{
-        let id = bt.id.replace('id','');
+    bt.addEventListener('click', () => {
+        let id = bt.id.replace('id', '');
         produtos[id].quantidade = 1;
         atualizarTabela();
     });
@@ -57,13 +57,13 @@ function atualizarTabela() {
             tbody.innerHTML += `
             <tr>
                 <td>${p.nome}</td>
-                <td>${p.quantidade}x${p.fatias8}=${p.quantidade*p.fatias8}(8 fatias)</td>
+                <td>${p.quantidade}x${p.fatias8}=${p.quantidade * p.fatias8}(8 fatias)</td>
                 <td>
                     <i class="bi bi-plus-square-fill" id="plus${id}"></i>
                     <i class="bi bi-dash-square-fill" id="dash${id}"></i>
                 </td>
             </tr>`;
-            total += p.quantidade*p.fatias8;
+            total += p.quantidade * p.fatias8;
         }
         id++;
     }
@@ -76,14 +76,31 @@ function atualizarPlusDash(tipo) {
     let botoes = document.querySelectorAll(`.bi-${tipo}-square-fill`);
     for (const bt of botoes) {
         bt.addEventListener('click', () => {
-            let id = bt.id.replace(tipo,'');
-            if(tipo == 'plus'){
+            let id = bt.id.replace(tipo, '');
+            if (tipo == 'plus') {
                 produtos[id].quantidade++;
             }
-            if(tipo == 'dash'){
+            if (tipo == 'dash') {
                 produtos[id].quantidade--;
             }
             atualizarTabela();
         });
     }
 }
+
+let enviar = document.querySelector('.enviar');
+enviar.addEventListener('click', () => {
+    let msg = 'Gostaria de fazer o seguinte pedido\n';
+    let total = 0;
+    for (const p of produtos) {
+        if (p.quantidade > 0) {
+            msg += `${p.nome} ${p.quantidade}x${p.fatias8}=${p.quantidade * p.fatias8}\n`;
+            total += p.quantidade * p.fatias8;
+        }
+    }
+    msg += `Total = ${total}`;
+    msg = encodeURI(msg);
+    let fone = '5561';
+    let link = `https://api.whatsapp.com/send?phone=${fone}&text=${msg}`;
+    window.open(link);
+});
