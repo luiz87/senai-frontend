@@ -42,7 +42,14 @@ let lsPedido = document.querySelectorAll('.pedir');
 for (const bt of lsPedido) {
     bt.addEventListener('click', () => {
         let id = bt.id.replace('id', '');
-        produtos[id].quantidade = 1;
+        bt.classList.toggle('selecionado');
+        if(bt.innerHTML == 'REMOVER'){
+            produtos[id].quantidade = 0;
+            bt.innerHTML = 'pedir agora';
+        }else{
+            produtos[id].quantidade = 1;
+            bt.innerHTML = 'REMOVER';
+        }
         atualizarTabela();
     });
 }
@@ -82,6 +89,9 @@ function atualizarPlusDash(tipo) {
             }
             if (tipo == 'dash') {
                 produtos[id].quantidade--;
+                if(produtos[id].quantidade < 1){
+                    document.getElementById('id'+id).click();
+                }
             }
             atualizarTabela();
         });
