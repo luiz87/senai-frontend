@@ -547,6 +547,12 @@ footer {
 .content-carrinho{
     width: 90%;
     margin-top: 10px;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    display: none;
 }
 
 .itens-cardapio .info button.selecionado{

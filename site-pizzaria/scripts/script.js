@@ -56,7 +56,7 @@ for (const bt of lsPedido) {
 
 let tbody = document.querySelector('tbody');
 function atualizarTabela() {
-    tbody.innerHTML = '';
+    tbody.innerHTML += '';
     let total = 0;
     let id = 0;
     for (const p of produtos) {
