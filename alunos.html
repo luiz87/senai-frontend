@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-3">
+        <h2>Alunos</h2>
+        <!-- <p>The .table-striped class adds zebra-stripes to a table:</p>             -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th width="70%">Aluno</th>
+                    <th class="text-center">github</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let alunos = [
+            { "aluno": "Alexandre Cesar da Silva Santos Filho", "github": "https://github.com/Alexandre8Cesar", "site": "https://alexandre8cesar.github.io/senai-frontend/" },
+            { "aluno": "Bruno Ricardo Carvalho Monteiro", "github": "https://github.com/brunor2640", "site": "https://brunor2640.github.io/senai-frontend/" },
+            { "aluno": "Edvan da Silva Pereira", "github": "https://github.com/edvancod", "site": "https://edvancod.github.io/portfolio/" },
+            { "aluno": "Felipe Lopes Mariano", "github": "https://github.com/felipe-mariano", "site": "https://felipe-mariano.github.io/senai-frontend2/" },
+            { "aluno": "Flavio Barbosa da Silva", "github": "https://github.com/flavio-1986", "site": "https://flavio-1986.github.io/senaifrontend/" },
+            { "aluno": "Thyago Henrique Nascimento", "github": "https://github.com/Thyagotk", "site": "https://thyagotk.github.io/senai-frontend/" },
+            { "aluno": "Valdeli de Jesus Silva", "github": "https://github.com/valderbill", "site": "https://valderbill.github.io/senai-valdeli/" },
+            { "aluno": "Robert Alexandre da Silva Melo", "github": "https://github.com/mellodev11", "site": "https://mellodev11.github.io/senai-frontend-master/" }
+        ]
+
+        let tbody = document.querySelector('tbody');
+        for (const a of alunos) {
+            tbody.innerHTML += `
+            <tr>
+                    <td>
+                        ${a.aluno}
+                    </td>
+                    <td class="text-center">
+                        <a href="${a.github}" class="btn btn-outline-success">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a href="${a.site}" class="btn btn-outline-primary">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </td>
+                </tr>
+            `;
+        }
+    </script>
+</body>
+
+</html>
