@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        #campo {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bloco {
+            width: 150px;
+            height: 150px;
+            border: 2px solid gray;
+
+            cursor: pointer;
+            transition: all 300ms ease-in-out;
+
+            margin-top: 5px;
+            margin-left: 5px;
+
+            border-radius: 5%;
+        }
+
+        .bloco:hover {
+            border: 2px solid black;
+        }
+
+        .active {
+            transform: scale(0.9);
+            opacity: 0.6;
+        }
+
+        .bloco:active {
+            transform: scale(0.9);
+            opacity: 0.6;
+        }
+
+        #verde {
+            background-color: #008000;
+        }
+
+        #amarelo {
+            background-color: yellow;
+        }
+
+        #vermelho {
+            background-color: red;
+        }
+
+        #azul {
+            background-color: blue;
+        }
+
+        .aguarde {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background-color: #1f1e1f15;
+            z-index: 10;
+            transition: all 500ms ease;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        #bt-iniciar {
+            padding: 10px;
+            font-size: large;
+            cursor: pointer;
+            text-transform: uppercase;
+
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5%;
+
+        }
+
+        #alerta {
+            background-color: #ffffffde;
+            padding: 1%;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="aguarde" class="aguarde">
+        <div id="alerta">
+            <button onclick="iniciar()" id="bt-iniciar">Iniciar</button>
+            <p id="recorde">Recorde: 0 movimentos.</p>
+        </div>
+    </section>
+    <section id="campo">
+        <div>
+            <div class="bloco " id="verde"></div>
+            <div class="bloco " id="vermelho"></div>
+        </div>
+        <div>
+            <div class="bloco " id="amarelo"></div>
+            <div class="bloco " id="azul"></div>
+        </div>
+    </section>
+
+    <script>
+
+        $(document).ready(() => {
+            $(".bloco").click(clique);
+        });
+
+        let recorde = 0;
+
+        let cont = 0;
+        var toqueDo = new Audio("soms/do.mp3");
+        var toqueRe = new Audio("soms/re.mp3");
+        var toqueMi = new Audio("soms/mi.mp3");
+        var toqueFa = new Audio("soms/fa.mp3");
+
+        let toques = { "verde": toqueDo, "amarelo": toqueRe, "vermelho": toqueMi, "azul": toqueFa };
+
+        function clique() {
+            let bloco = this;
+            if (toques[bloco.id].paused) {
+                toques[bloco.id].play();
+            } else {
+                toques[bloco.id].currentTime = 0;
+            }
+            
+            if (blocos[sorteados[cont]] == bloco.id) {
+                cont++;
+                if (sorteados.length == cont) {
+                    cont = 0;
+                    aguarde.classList.toggle('aguarde');
+                    setTimeout(sortear, 1000);
+                }
+            } else {
+                fim();
+            }
+        }
+        function efeito(id) {
+            toques[id].play();
+            let v = document.getElementById(id);
+            console.log(v.id);
+            v.classList.toggle('active');
+            setTimeout(() => { v.classList.toggle('active'); }, 200);
+        }
+
+        function sortear() {
+            let n = Math.floor(Math.random() * 3);
+            sorteados.push(n);
+            executar();
+        }
+
+        let blocos = ["verde", "amarelo", "vermelho", "azul"];
+        function executar() {
+            let t = 0;
+            for (let i = 0; i < sorteados.length; i++) {
+                let n = sorteados[i];
+                t = 1000 * i;
+                setTimeout(() => { efeito(blocos[n]); }, t);
+            }
+            t = 1000 * sorteados.length;
+            setTimeout(() => { aguarde.classList.toggle('aguarde'); }, t);
+        }
+
+        let sorteados = [];
+        let aguarde = document.getElementById("aguarde");
+        let alerta = document.getElementById("alerta");
+        function iniciar() {
+            alerta.style.display = 'none';
+            sortear();
+        }
+
+        function fim() {
+            aguarde.classList.toggle('aguarde');
+            alerta.style.display = '';
+
+            if (sorteados.length - 1 > recorde) {
+                recorde = sorteados.length - 1;
+                document.getElementById("recorde").innerText = `Recorde: ${recorde} movimentos.`;
+            }
+
+            sorteados = [];
+            cont = 0;
+        }
+    </script>
+</body>
+
+</html>

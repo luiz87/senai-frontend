@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="dobble.js"></script>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
+        td{
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        td:hover{
+            background-color: cadetblue;
+        }
+
+        .cor{
+            background-color: rgb(139, 141, 141);
+        }
+
+        .marcado{
+            background-color: rgb(139, 141, 141);
+        }
+    </style>
+</head>
+
+<body>
+    <table border="1" style="text-align: center;">
+        <script>
+            let i = 1;
+            for (const crt of baralho) {
+                document.write('<tr>')
+                document.write(`<td>${i}</td>`)
+                for (const c of crt) {
+                    document.write(`<td>${c}</td>`)
+                }
+                document.write('</tr>')
+                i++;
+            }
+        </script>
+    </table>
+</body>
+
+</html>

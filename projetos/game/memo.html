@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .bloco {
+        height: 70px;
+        width: 70px;
+        background-color: gray;
+
+        border-radius: 5%;
+        border: 3px solid black;
+
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 2.8rem;
+    }
+
+    .bloco:hover {
+        background-color: aquamarine;
+    }
+
+    .bloco:active {
+        background-color: black;
+    }
+
+    .aberto{
+        background-color: aquamarine;
+    }
+
+    #campo {
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        gap: 5px;
+    }
+
+    #tela {
+        display: flex;
+        justify-content: center;
+    }
+
+    h1{
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h1>Jogo da memória</h1>      
+    <div id="tela">  
+        <div id="campo">
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+            <div class="bloco"></div>
+        </div>
+    </div>
+    <script>
+        const lsBloco = document.getElementsByClassName('bloco');
+        let lsEmoticons = ["😎", "😒", "😁", "😉", "😂", "😍", "😘", "😭"];
+        const tamanho = lsEmoticons.length;
+        for (let i = 0; i < tamanho; i++) {
+            lsEmoticons.push(lsEmoticons[i])
+        }
+        let i = 0;
+        let obj = {};
+        for (const b of lsBloco) {
+            b.addEventListener('click', () => {
+                mostar(b);
+            });
+            icon = lsEmoticons.splice(Math.floor(Math.random() * lsEmoticons.length), 1);
+            obj[`id${i}`] = icon;
+            b.id = `id${i}`;
+            i++;
+        }
+
+        let aberto = ["",""];
+
+        function mostar(b) {
+            if (b.innerHTML != "") return;
+
+            if (aberto[0] != "" && aberto[1] != "") {
+                testar();
+            }
+
+            if (aberto[0] == "") {
+                aberto[0] = b
+                b.innerHTML = obj[b.id];
+                return;
+            }
+
+            if (aberto[1] == "") {
+                aberto[1] = b
+                b.innerHTML = obj[b.id];
+                return;
+            }
+            
+        }
+
+        function testar() {
+
+            if (aberto[0].innerHTML != aberto[1].innerHTML) {
+                aberto[0].innerHTML = "";
+                aberto[1].innerHTML = "";
+            }
+            aberto[0] = "";
+            aberto[1] = "";
+        }
+    </script>
+
+</body>
+
+</html>
